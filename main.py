@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request
-from movies_catalogue import tmdb_client
+import tmdb_client
 import random
+
 app = Flask(__name__)
 
 
