@@ -14,7 +14,11 @@ def call_tmdb_api(endpoint):
     return response.json()
 
 
-def get_movies_list(list_type='popular'):
+def get_popular_movies():
+    return call_tmdb_api("movie/popular")
+
+
+def get_movies_list(list_type):
     return call_tmdb_api(f"movie/{list_type}")
 
 
