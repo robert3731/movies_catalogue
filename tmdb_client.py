@@ -50,3 +50,8 @@ def get_single_movie_cast(movie_id, how_many):
     response = requests.get(endpoint, headers=headers)
     print(json.dumps(response.json(), indent=4))
     return response.json()['cast'][:how_many]
+
+
+def search(search_query):
+    response = call_tmdb_api(f"search/movie/?query={search_query}")
+    return response['results']

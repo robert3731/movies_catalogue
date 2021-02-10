@@ -34,7 +34,7 @@ def test_get_movies_list(monkeypatch):
 
     movies_mock = Mock()
     response = movies_mock.return_value
-    response.json.return_value=mock_movies_list
+    response.json.return_value = mock_movies_list
     monkeypatch.setattr("tmdb_client.requests.get", movies_mock)
 
     movies_list=tmdb_client.get_movies_list(list_type="popular")
