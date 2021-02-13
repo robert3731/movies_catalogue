@@ -10,7 +10,13 @@
 
    <div class="row">
      <div class="col-md-8">
-       <img class="card-img-top" src="{{ tmdb_image_url(movie.backdrop_path,'w780') }}" alt="">
+         {% if movie.backdrop_path %}
+         <img class="card-img-top" src="{{ tmdb_image_url(selected_backdrop,'w780') }}" alt="">
+         {% else %}
+         <img src="https://via.placeholder.com/780x360?text={{ movie.title }}"
+              class="figure-img img-fluid rounded" alt="{{ movie.title }}">
+         {% endif %}
+
      </div>
      <div class="col-md-4">
          <h3>{{ movie.tagline }}</h3>
@@ -35,7 +41,7 @@
                            <img src="{{ tmdb_image_url(actor.profile_path, 'w185') }}"
                                 class="figure-img img-fluid rounded" alt="{{ actor.name }}">
                        {% else %}
-                           <img src="https://placehold.it/185x278?text={{ actor.name }}"
+                           <img src="https://via.placeholder.com/185x278?text={{ actor.name }}"
                                 class="figure-img img-fluid rounded" alt="{{ actor.name }}">
                        {% endif %}
                        <figcaption class="figure-caption">{{ actor.name }} as {{ actor.character }}</figcaption>

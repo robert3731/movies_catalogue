@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request
 import tmdb_client
 import random
+import datetime
 
 app = Flask(__name__)
 
@@ -17,11 +18,15 @@ def homepage():
 
 @app.route("/movie/<movie_id>")
 def movie_details(movie_id):
-    details = tmdb_client.get_movie_details(movie_id)
+    movie = tmdb_client.get_movie_details(movie_id)
     images = tmdb_client.get_movie_images(movie_id)
-    selected_backdrop = random.choice(images['backdrops'])
+    if images['backdrops']:
+        selected_backdrop = random.choice(images['backdrops'])
+        backdrop = selected_backdrop['file_path']
+    else:
+        backdrop = []
     cast = tmdb_client.get_single_movie_cast(movie_id, how_many=4)
-    return render_template("movie_details.html", movie=details, cast=cast, selected_backdrop=selected_backdrop)
+    return render_template("movie_details.html", movie=movie, cast=cast, selected_backdrop=backdrop)
 
 
 @app.route("/search")
@@ -32,6 +37,13 @@ def search():
     else:
         movies = []
     return render_template("search.html", movies=movies, search_query=search_query)
+
+
+@app.route('/today')
+def airing_today():
+    movies = tmdb_client.get_airing_today()
+    today = datetime.date.today()
+    return render_template("airing_today.html", movies=movies, today=today)
 
 
 @app.context_processor
