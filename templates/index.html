@@ -39,15 +39,12 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url_for('show_favorites') }}">Favorites</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Contact</a>
-                </li>
                 <li>
                     <form class="form-inline" action="/search" method="GET">
                         <input class="form-control mr-sm-2" type="text"
                                value="{% if search_query %}{{ search_query }}{% endif %}"
-                               placeholder="Szukaj" aria-label="Search" name="q">
-                        <button class="btn btn-outline-info" type="submit">Szukaj</button>
+                               placeholder="Search" aria-label="Search" name="q">
+                        <button class="btn btn-outline-info" type="submit">Search</button>
                     </form>
                 </li>
             </ul>

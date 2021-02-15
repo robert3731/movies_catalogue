@@ -56,7 +56,7 @@ def add_to_favorites():
     movie_title = data.get('movie_title')
     if movie_id:
         FAVORITES.add(movie_id)
-        flash(f'Dodano film {movie_title} do ulubionych!')
+        flash(f'Added {movie_title} to favorites!')
     return redirect(url_for('homepage'))
 
 
