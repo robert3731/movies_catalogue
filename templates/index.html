@@ -21,47 +21,37 @@
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
     <div class="container">
-        <a class="navbar-brand">Movie Catalog</a>
+        <a class="navbar-brand" href="/">Movie Catalog</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
                 aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="{{ url_for('homepage', list_type='popular') }}">Home
-                        <span class="sr-only">(current)</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('airing_today') }}">Series Airing Today</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('show_favorites') }}">Favorites</a>
-                </li>
-                <li>
-                    <form class="form-inline" action="/search" method="GET">
-                        <input class="form-control mr-sm-2" type="text"
-                               value="{% if search_query %}{{ search_query }}{% endif %}"
-                               placeholder="Search" aria-label="Search" name="q">
-                        <button class="btn btn-outline-info" type="submit">Search</button>
-                    </form>
-                </li>
-            </ul>
-        </div>
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('show_favorites') }}">Favorites</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('airing_today') }}">Today in TV</a>
+            </li>
+        </ul>
+        <form class="form-inline" action="/search" method="GET">
+            <input class="form-control mr-sm-2" type="text" value="{% if search_query %}{{ search_query }}{% endif %}"
+                   placeholder="Search" aria-label="Search" name="q">
+            <button class="btn btn-outline-info" type="submit">Search</button>
+        </form>
     </div>
 </nav>
 {% with messages = get_flashed_messages() %}
-  {% if messages %}
-    {% for message in messages %}
-      <div class="alert alert-info mt-3" role="alert">
-        {{ message }}
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-    {% endfor %}
-  {% endif %}
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-info mt-3" role="alert">
+    {{ message }}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+{% endfor %}
+{% endif %}
 {% endwith %}
 
 <!-- Page Content -->
