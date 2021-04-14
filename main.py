@@ -57,6 +57,9 @@ def add_to_favorites():
     if movie_id:
         FAVORITES.add(movie_id)
         flash(f'Added: {movie_title} to favorites!')
+    if movie_id not in FAVORITES:
+        FAVORITES.remove(movie_id)
+        flash(f'Removed: {movie_title} to favorites!')
     return redirect(url_for('homepage'))
 
 
@@ -69,7 +72,7 @@ def show_favorites():
             movies.append(movie_details)
     else:
         movies = []
-    return render_template("homepage.html", movies=movies)
+    return render_template("favorites.html", movies=movies)
 
 
 @app.context_processor
